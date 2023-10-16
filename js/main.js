@@ -1,13 +1,6 @@
-import * as controller from "./controller/fieldController.js";
+import * as controller from "./controller/gameController.js";
+
+const startButton = document.querySelector(".game-start-button");
+startButton.addEventListener("click", controller.startGame);
 
 controller.init();
-// console.log("hello gamer 🙋‍♂️");
-// const block = document.querySelector('.field-cell[data-coord="0,0"]');
-
-// const moveBlock = function () {
-//   block.style.transform = "translate(531px, 0px)";
-// };
-
-// const changeColor = function () {
-//   block.style.backgroundColor = "#ababab";
-// };

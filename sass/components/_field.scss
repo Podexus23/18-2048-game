@@ -28,6 +28,11 @@
 
     .field-cell {
       background-color: transparent;
+      display: flex;
+      align-items: center;
+      font-size: 5rem;
+      align-content: center;
+      justify-content: center;
     }
 
     .active {

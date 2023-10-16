@@ -11,10 +11,15 @@ const state = {
   height: 0,
   width: 0,
   emptySpots: 0,
+  isPlaying: false,
 };
 
 export const getState = () => {
   return state;
+};
+
+export const setGameState = (gameState) => {
+  state.isPlaying = gameState;
 };
 
 export const createMatrix = (x, y) => {

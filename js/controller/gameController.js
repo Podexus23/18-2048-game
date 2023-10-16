@@ -12,7 +12,7 @@ document.addEventListener("keydown", (e) => {
 
   if (code === "ArrowRight") {
     model.addNewBox();
-    model.getMatrix();
+    model.getState();
   }
 });
 
@@ -28,6 +28,16 @@ export const init = function () {
   model.createMatrix(matrixSize.x, matrixSize.y);
   fieldView.createField(model.getState(), "down");
   fieldView.createField(model.getState());
+};
 
+//Game Start
+
+export const startGame = () => {
+  const matrix = model.getState();
+  //generate new box in matrix
   model.addNewBox(true);
+  //say to state that game started
+  model.setGameState(true);
+  //render new field with occupied boxes in matrix
+  fieldView.updateTopField(matrix);
 };

@@ -52,7 +52,14 @@ main {
 }
 main .rules {
   text-align: center;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
+}
+main .game-controls {
+  padding-bottom: 1rem;
+}
+main .game-controls button {
+  font: inherit;
+  padding: 0.2rem 1rem;
 }
 
 .header {
@@ -90,6 +97,11 @@ main .rules {
 }
 .field__top .field-cell {
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  font-size: 5rem;
+  align-content: center;
+  justify-content: center;
 }
 .field__top .active {
   background-color: #ffaaaa;
