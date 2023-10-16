@@ -1,0 +1,83 @@
+:root {
+  --field-size: 45rem;
+  --dark-color-1: #7c2d12;
+  --light-color-1: #fdba74;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 10px */
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.field {
+  border: 0.2rem dotted rgb(255, 179, 0);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+.field .field-cell {
+  width: 10rem;
+  height: 10rem;
+  background-color: var(--light-color-1);
+  transition: 0.2s all ease-in;
+}
+.field__top {
+  border: 0.2rem solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+.field__top .field-cell {
+  background-color: transparent;
+}
+.field__top .active {
+  background-color: #ffaaaa;
+}
+.field__down {
+  background-color: var(--dark-color-1);
+  border: 0.2rem dotted rgb(255, 179, 0);
+}
+.field__down .field-cell {
+  background-color: transparent;
+  border: 2px solid var(--light-color-1);
+}
+
+.field-wrapper {
+  position: relative;
+}
+
+/*# sourceMappingURL=style.css.map */

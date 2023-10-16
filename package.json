@@ -1,0 +1,22 @@
+{
+  "name": "js30-game-2048",
+  "version": "1.0.0",
+  "description": "game project for RSPREschool",
+  "main": "main.js",
+  "scripts": {
+    "sass:watch": "sass ./sass/main.scss ./style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/podexus23-JSFEPRESCHOOL2023Q2.git"
+  },
+  "author": "Podexus23",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/podexus23-JSFEPRESCHOOL2023Q2/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/podexus23-JSFEPRESCHOOL2023Q2#readme",
+  "devDependencies": {
+    "sass": "^1.69.2"
+  }
+}
