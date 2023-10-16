@@ -55,7 +55,6 @@ export const updateTopField = function (matrix) {
       !newEl.isEqualNode(curEl) &&
       newEl.firstChild?.nodeValue.trim() !== ""
     ) {
-      console.log("hi");
       curEl.textContent = newEl.textContent;
     }
     //updates changes attributes
@@ -72,8 +71,3 @@ export const updateTopField = function (matrix) {
 
   fieldsWrapper.append(fieldTop);
 };
-
-fieldsWrapper.addEventListener("click", (e) => {
-  if (e.target.classList.contains("field-cell"))
-    e.target.classList.add("active");
-});

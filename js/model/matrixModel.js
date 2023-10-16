@@ -48,7 +48,7 @@ export const addNewBox = (start = false) => {
   state.emptySpots = state.matrix.flat().filter((e) => e === 0).length;
 };
 
-export function moveToTheRight(arr) {
+function moveToTheRight(arr) {
   let res = new Array(arr.length).fill(0);
   let arrCopy = [...arr];
   //previous change index, to move forward if previous box changed
@@ -82,7 +82,7 @@ export function moveToTheRight(arr) {
     prevInd = newInd;
   }
 
-  return res.join(",");
+  return res;
 }
 
 //! test cases to right
@@ -93,7 +93,7 @@ export function moveToTheRight(arr) {
 // console.log(moveToTheRight(arr5), "Result: 0,8,16,4");
 // console.log(moveToTheRight(arr6), "Result: 0,0,4,4");
 
-export function moveToTheLeft(arr) {
+function moveToTheLeft(arr) {
   let res = new Array(arr.length).fill(0);
   let arrCopy = [...arr];
   //previous change index, to move forward if previous box changed
@@ -127,7 +127,7 @@ export function moveToTheLeft(arr) {
     prevInd = newInd;
   }
 
-  return res.reverse().join(",");
+  return res.reverse();
 }
 
 //! test cases to left
@@ -137,3 +137,10 @@ export function moveToTheLeft(arr) {
 // console.log(moveToTheLeft(arr4), "Result: 8,4,2,4");
 // console.log(moveToTheLeft(arr5), "Result: 16,8,4,0");
 // console.log(moveToTheLeft(arr6), "Result: 4,4,0,0");
+
+export const movedToRight = () => {
+  state.matrix = state.matrix.map(moveToTheRight);
+};
+export const movedToLeft = () => {
+  state.matrix = state.matrix.map(moveToTheLeft);
+};

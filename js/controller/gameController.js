@@ -2,25 +2,46 @@ import * as model from "../model/matrixModel.js";
 import * as fieldView from "../view/fieldView.js";
 import { matrixSize, ARROWS } from "../config/config.js";
 
-// HANDLERS
+const fieldsWrapper = document.querySelector(".field-wrapper");
 let pressedButton;
-document.addEventListener("keydown", (e) => {
-  const { code } = e;
-  //checking for use keyboard arrows, but maybe i don't need the, will see
-  if (code === pressedButton || !ARROWS.includes(code)) return;
-  pressedButton = code;
-
-  if (code === "ArrowRight") {
-    model.addNewBox();
-    model.getState();
-  }
+// Listeners
+fieldsWrapper.addEventListener("click", (e) => {
+  if (e.target.classList.contains("field-cell"))
+    e.target.classList.add("active");
 });
 
-document.addEventListener("keyup", (e) => {
-  const { code } = e;
-  if (!ARROWS.includes(code)) return;
-  pressedButton = "";
-});
+const addGamePlayListeners = function () {
+  document.addEventListener("keydown", (e) => {
+    const { code } = e;
+    //checking for use keyboard arrows, but maybe i don't need the, will see
+    if (code === pressedButton || !ARROWS.includes(code)) return;
+    pressedButton = code;
+
+    if (code === "ArrowRight") {
+      console.log("right");
+      makeAMove("right");
+    }
+    if (code === "ArrowLeft") {
+      console.log("left");
+      makeAMove("left");
+    }
+    if (code === "ArrowUp") {
+      console.log("up");
+      makeAMove("up");
+    }
+    if (code === "ArrowDown") {
+      console.log("down");
+      makeAMove("down");
+    }
+    console.log(model.getState().matrix);
+  });
+
+  document.addEventListener("keyup", (e) => {
+    const { code } = e;
+    if (!ARROWS.includes(code)) return;
+    pressedButton = "";
+  });
+};
 
 // INITIALIZATION
 export const init = function () {
@@ -31,13 +52,23 @@ export const init = function () {
 };
 
 //Game Start
-
 export const startGame = () => {
   const matrix = model.getState();
   //generate new box in matrix
   model.addNewBox(true);
   //say to state that game started
   model.setGameState(true);
+  //render new field with occupied boxes in matrix
+  fieldView.updateTopField(matrix);
+  addGamePlayListeners();
+};
+
+export const makeAMove = (side) => {
+  const matrix = model.getState();
+  if (side === "right") model.movedToRight();
+  if (side === "left") model.movedToLeft();
+  //generate new box in matrix
+  model.addNewBox();
   //render new field with occupied boxes in matrix
   fieldView.updateTopField(matrix);
 };
