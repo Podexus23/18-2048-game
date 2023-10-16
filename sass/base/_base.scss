@@ -10,9 +10,21 @@ html {
   /* 10px */
   font-size: 62.5%;
   box-sizing: border-box;
+  font-family: "Russo One", sans-serif;
+  color: var(--text-dark-2);
 }
 
 body {
   height: 100vh;
   width: 100%;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--text-dark-2);
+}
+
+a:hover {
+  color: var(--dark-color-1);
 }

@@ -2,6 +2,8 @@
   --field-size: 45rem;
   --dark-color-1: #7c2d12;
   --light-color-1: #fdba74;
+  --text-dark-1: #09090b;
+  --text-dark-2: #18181b;
 }
 
 *,
@@ -16,6 +18,8 @@ html {
   /* 10px */
   font-size: 62.5%;
   box-sizing: border-box;
+  font-family: "Russo One", sans-serif;
+  color: var(--text-dark-2);
 }
 
 body {
@@ -23,9 +27,18 @@ body {
   width: 100%;
 }
 
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--text-dark-2);
+}
+
+a:hover {
+  color: var(--dark-color-1);
+}
+
 body {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
 }
@@ -36,6 +49,20 @@ main {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+main .rules {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.header {
+  padding: 1rem;
+  font-style: 3rem;
+}
+
+.footer {
+  margin: auto auto 0 auto;
+  padding-bottom: 1rem;
 }
 
 .field {

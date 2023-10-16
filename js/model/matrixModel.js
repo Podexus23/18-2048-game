@@ -13,9 +13,8 @@ const state = {
   emptySpots: 0,
 };
 
-export const getMatrix = () => {
-  console.log(state.matrix);
-  console.log(state.emptySpots);
+export const getState = () => {
+  return state;
 };
 
 export const createMatrix = (x, y) => {

@@ -1,4 +1,5 @@
 import * as model from "../model/matrixModel.js";
+import * as fieldView from "../view/fieldView.js";
 import { matrixSize, ARROWS } from "../config/config.js";
 
 // HANDLERS
@@ -22,8 +23,11 @@ document.addEventListener("keyup", (e) => {
 });
 
 // INITIALIZATION
-const init = function () {
+export const init = function () {
+  // creating matrix model and render it on screen
   model.createMatrix(matrixSize.x, matrixSize.y);
+  fieldView.createField(model.getState(), "down");
+  fieldView.createField(model.getState());
+
   model.addNewBox(true);
 };
-init();
