@@ -45,12 +45,12 @@ const addGamePlayListeners = function () {
 // INITIALIZATION
 export const init = function () {
   // creating matrix model and render it on screen
-  //! model.createMatrix(matrixSize.x, matrixSize.y);
+  model.createMatrix(matrixSize.x, matrixSize.y);
   fieldView.createField(model.getState(), "down");
   fieldView.createField(model.getState());
   //! test purpose
-  const matrix = model.getState();
-  fieldView.updateTopField(matrix);
+  // const matrix = model.getState();
+  // fieldView.updateTopField(matrix);
 };
 
 //Game Start
@@ -62,7 +62,7 @@ export const startGame = () => {
   model.setGameState(true);
   //render new field with occupied boxes in matrix
   fieldView.updateTopField(matrix);
-  //! addGamePlayListeners();
+  addGamePlayListeners();
 };
 
 export const makeAMove = (side) => {
@@ -86,12 +86,11 @@ export const makeAMove = (side) => {
   }
   console.log(matrix);
   //generate new box in matrix
-  //! model.addNewBox();
+  !model.addNewBox();
   //render new field with occupied boxes in matrix
-  //! return updater
   setTimeout(() => {
     fieldView.updateTopField(matrix);
-  }, 300);
+  }, 200);
 };
 
-addGamePlayListeners();
+// addGamePlayListeners();

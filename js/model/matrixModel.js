@@ -1,24 +1,24 @@
-const fakeMatrix = [
-  [2, 0, 0, 0],
-  [2, 0, 0, 4],
-  [2, 0, 0, 2],
-  [2, 0, 0, 0],
-];
+// const fakeMatrix = [
+//   [2, 0, 0, 0],
+//   [2, 0, 0, 4],
+//   [2, 0, 0, 2],
+//   [2, 0, 0, 0],
+// ];
 
-const fakeIndexes = [
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-];
+// const fakeIndexes = [
+//   [0, 0, 0, 0],
+//   [0, 0, 0, 0],
+//   [0, 0, 0, 0],
+//   [0, 0, 0, 0],
+// ];
 
 const state = {
-  matrix: fakeMatrix,
+  matrix: [],
   height: 4,
   width: 4,
   emptySpots: 8,
   isPlaying: false,
-  indexes: fakeIndexes,
+  indexes: [],
 };
 
 export const getState = () => {
