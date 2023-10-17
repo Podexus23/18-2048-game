@@ -47,10 +47,6 @@ export const createMatrix = (x, y) => {
 };
 
 export const addNewBox = (start = false) => {
-  if (!state.emptySpots) {
-    console.log("sorry, game over");
-    return;
-  }
   let x = Math.ceil(Math.random() * state.width) - 1;
   let y = Math.ceil(Math.random() * state.height) - 1;
   if (start) state.matrix[y][x] = 2;
