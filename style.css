@@ -1,0 +1,122 @@
+:root {
+  --field-size: 45rem;
+  --dark-color-1: #7c2d12;
+  --light-color-1: #fdba74;
+  --text-dark-1: #09090b;
+  --text-dark-2: #18181b;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 10px */
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: "Russo One", sans-serif;
+  color: var(--text-dark-2);
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--text-dark-2);
+}
+
+a:hover {
+  color: var(--dark-color-1);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+main .rules {
+  text-align: center;
+  padding: 1rem 1.5rem;
+}
+main .game-controls {
+  padding-bottom: 1rem;
+}
+main .game-controls button {
+  font: inherit;
+  padding: 0.2rem 1rem;
+}
+
+.header {
+  padding: 1rem;
+  font-style: 3rem;
+}
+
+.footer {
+  margin: auto auto 0 auto;
+  padding-bottom: 1rem;
+}
+
+.field {
+  border: 0.2rem dotted rgb(255, 179, 0);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+.field .field-cell {
+  width: 10rem;
+  height: 10rem;
+  background-color: var(--light-color-1);
+  transition: 0.2s all ease-in;
+}
+.field__top {
+  border: 0.2rem solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+.field__top .field-cell {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  font-size: 5rem;
+  align-content: center;
+  justify-content: center;
+}
+.field__top .active {
+  background-color: #ffaaaa;
+}
+.field__down {
+  background-color: var(--dark-color-1);
+  border: 0.2rem dotted rgb(255, 179, 0);
+}
+.field__down .field-cell {
+  background-color: transparent;
+  border: 2px solid var(--light-color-1);
+}
+
+.field-wrapper {
+  position: relative;
+}
+
+/*# sourceMappingURL=style.css.map */

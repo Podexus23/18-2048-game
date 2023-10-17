@@ -1,0 +1,56 @@
+.field {
+  // width: var(--field-size);
+  // height: var(--field-size);
+
+  border: 0.2rem dotted rgb(255, 179, 0);
+  border-radius: 1rem;
+  padding: 0.5rem;
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+
+  .field-cell {
+    width: 10rem;
+    height: 10rem;
+    background-color: var(--light-color-1);
+    transition: 0.2s all ease-in;
+  }
+
+  &__top {
+    border: 0.2rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+
+    .field-cell {
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      font-size: 5rem;
+      align-content: center;
+      justify-content: center;
+    }
+
+    .active {
+      background-color: #ffaaaa;
+    }
+  }
+
+  &__down {
+    background-color: var(--dark-color-1);
+    border: 0.2rem dotted rgb(255, 179, 0);
+
+    .field-cell {
+      background-color: transparent;
+      border: 2px solid var(--light-color-1);
+    }
+  }
+}
+
+.field-wrapper {
+  position: relative;
+}

@@ -1,0 +1,22 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  .rules {
+    text-align: center;
+    padding: 1rem 1.5rem;
+  }
+
+  .game-controls {
+    padding-bottom: 1rem;
+
+    button {
+      font: inherit;
+      padding: 0.2rem 1rem;
+    }
+  }
+}

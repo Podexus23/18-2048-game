@@ -1,0 +1,16 @@
+// Abstract
+@import "./abstract/variables";
+
+// Base
+@import "./base/base";
+
+// Pages
+@import "./pages/2048page";
+
+// Layout
+@import "./layout/mainBlock";
+@import "./layout/header";
+@import "./layout/footer";
+
+//Components
+@import "./components/field";
