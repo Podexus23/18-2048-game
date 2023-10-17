@@ -1,8 +1,9 @@
+import { WIN_NUMBER } from "../config/config.js";
 // const fakeMatrix = [
 //   [2, 0, 0, 0],
 //   [2, 0, 0, 4],
-//   [2, 0, 0, 2],
-//   [2, 0, 0, 0],
+//   [1024, 0, 0, 2],
+//   [1024, 0, 0, 0],
 // ];
 
 // const fakeIndexes = [
@@ -14,9 +15,9 @@
 
 const state = {
   matrix: [],
-  height: 4,
-  width: 4,
-  emptySpots: 8,
+  height: 0,
+  width: 0,
+  emptySpots: 0,
   isPlaying: false,
   indexes: [],
 };
@@ -240,4 +241,8 @@ export const checkForGameOver = function () {
     console.log("hi loser");
     return true;
   }
+};
+
+export const checkForWinGame = function () {
+  return state.matrix.flat().includes(WIN_NUMBER);
 };

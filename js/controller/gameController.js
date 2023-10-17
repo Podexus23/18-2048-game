@@ -85,7 +85,13 @@ export const makeAMove = (side) => {
 
   //check if any box can move, if not, don't generate new one
   if (!matrix.emptySpots && model.checkForGameOver()) {
+    //! add ending screen
     fieldView.loadGameOverScreen();
+  }
+
+  if (model.checkForWinGame()) {
+    //! add win screen
+    console.log("you won");
   }
   //render new field with occupied boxes in matrix
   setTimeout(() => {
