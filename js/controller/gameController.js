@@ -44,9 +44,7 @@ export const init = function () {
 
 const resetGame = function () {
   fieldsWrapper.innerHTML = ``;
-  model.createMatrix(matrixSize.x, matrixSize.y);
-  fieldView.createField(model.getState(), "down");
-  fieldView.createField(model.getState());
+  init();
 };
 
 //Game Start
@@ -81,15 +79,16 @@ export const makeAMove = (side) => {
     model.movedDown();
     fieldView.moveDownAnimation(matrix.indexes);
   }
+  //check if there no empty boxes, don't spawn nwe ones
   let checkIndexes = matrix.indexes.flat().every((e) => e === 0);
-  if (!matrix.emptySpots && checkIndexes) console.log("hi loser");
-  //check if any box can move, if not, don't generate new one
   if (!checkIndexes) model.addNewBox();
 
+  //check if any box can move, if not, don't generate new one
+  if (!matrix.emptySpots && model.checkForGameOver()) {
+    fieldView.loadGameOverScreen();
+  }
   //render new field with occupied boxes in matrix
   setTimeout(() => {
     fieldView.updateTopField(matrix);
   }, animationTime);
 };
-
-// addGamePlayListeners();
