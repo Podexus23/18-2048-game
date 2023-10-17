@@ -5,6 +5,10 @@ import { matrixSize, ARROWS } from "../config/config.js";
 const fieldsWrapper = document.querySelector(".field-wrapper");
 let pressedButton;
 // Listeners
+document.addEventListener("click", (e) => {
+  console.log(e.clientX, e.clientY);
+});
+
 fieldsWrapper.addEventListener("click", (e) => {
   if (e.target.classList.contains("field-cell"))
     e.target.classList.add("active");
@@ -18,6 +22,7 @@ const addGamePlayListeners = function () {
     pressedButton = code;
 
     if (code === "ArrowRight") {
+      fieldView.moveToTheRightAnimation(1);
       makeAMove("right");
     }
     if (code === "ArrowLeft") {
@@ -29,7 +34,6 @@ const addGamePlayListeners = function () {
     if (code === "ArrowDown") {
       makeAMove("down");
     }
-    console.log(model.getState().matrix);
   });
 
   document.addEventListener("keyup", (e) => {
@@ -42,10 +46,12 @@ const addGamePlayListeners = function () {
 // INITIALIZATION
 export const init = function () {
   // creating matrix model and render it on screen
-  //!
-  model.createMatrix(matrixSize.x, matrixSize.y);
+  //! model.createMatrix(matrixSize.x, matrixSize.y);
   fieldView.createField(model.getState(), "down");
   fieldView.createField(model.getState());
+  //! test purpose
+  const matrix = model.getState();
+  fieldView.updateTopField(matrix);
 };
 
 //Game Start
@@ -57,7 +63,7 @@ export const startGame = () => {
   model.setGameState(true);
   //render new field with occupied boxes in matrix
   fieldView.updateTopField(matrix);
-  addGamePlayListeners();
+  //! addGamePlayListeners();
 };
 
 export const makeAMove = (side) => {
@@ -67,7 +73,11 @@ export const makeAMove = (side) => {
   if (side === "up") model.movedUp();
   if (side === "down") model.movedDown();
   //generate new box in matrix
-  model.addNewBox();
+  //! model.addNewBox();
   //render new field with occupied boxes in matrix
-  fieldView.updateTopField(matrix);
+  setTimeout(() => {
+    fieldView.updateTopField(matrix);
+  }, 1500);
 };
+
+addGamePlayListeners();

@@ -7,17 +7,17 @@ const arr5 = [8, 8, 8, 4];
 const arr6 = [2, 2, 2, 2];
 
 const fakeMatrix = [
-  [1, 2, 3, 4],
-  [1, 2, 3, 4],
-  [1, 2, 3, 4],
-  [1, 2, 3, 4],
+  [0, 0, 0, 0],
+  [2, 0, 0, 4],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
 ];
 
 const state = {
-  matrix: [],
-  height: 0,
-  width: 0,
-  emptySpots: 0,
+  matrix: fakeMatrix,
+  height: 4,
+  width: 4,
+  emptySpots: 8,
   isPlaying: false,
 };
 

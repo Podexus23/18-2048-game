@@ -1,5 +1,11 @@
 const fieldsWrapper = document.querySelector(".field-wrapper");
 let fieldDown, fieldTop;
+let fieldStats = {};
+
+const computeField = function () {
+  fieldStats.coords = fieldTop.getBoundingClientRect();
+  fieldStats.styles = getComputedStyle(fieldTop);
+};
 
 export const createField = function (matrix, place = "top") {
   if (place === "down") {
@@ -25,6 +31,7 @@ export const createField = function (matrix, place = "top") {
     }
     fieldTop.insertAdjacentHTML("beforeend", cells);
     fieldsWrapper.append(fieldTop);
+    computeField();
   }
 };
 
@@ -70,4 +77,16 @@ export const updateTopField = function (matrix) {
   fieldTop.insertAdjacentHTML("beforeend", cells);
 
   fieldsWrapper.append(fieldTop);
+};
+
+export const moveToTheRightAnimation = function (multi) {
+  const activeBlocks = Array.from(fieldTop.querySelectorAll(".active"));
+  const blockCoords = activeBlocks.map((e) => e.getBoundingClientRect());
+  const distanceToMove =
+    blockCoords[0].width * multi +
+    +fieldStats.styles.columnGap.slice(0, -2) * multi;
+
+  activeBlocks.forEach((el) => {
+    el.style.transform = `translate(${distanceToMove}px, 0px)`;
+  });
 };
