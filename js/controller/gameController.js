@@ -68,10 +68,17 @@ export const startGame = () => {
 
 export const makeAMove = (side) => {
   const matrix = model.getState();
-  if (side === "right") model.movedToRight();
+  if (side === "right") {
+    //generate new state for matrix
+    model.movedToRight();
+    // send indexes to make animation
+    //! remove 2 and add indexes
+    // fieldView.moveToTheRightAnimation(2);
+  }
   if (side === "left") model.movedToLeft();
   if (side === "up") model.movedUp();
   if (side === "down") model.movedDown();
+  console.log(matrix);
   //generate new box in matrix
   //! model.addNewBox();
   //render new field with occupied boxes in matrix
