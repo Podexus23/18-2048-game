@@ -79,14 +79,82 @@ export const updateTopField = function (matrix) {
   fieldsWrapper.append(fieldTop);
 };
 
-export const moveToTheRightAnimation = function (multi) {
-  const activeBlocks = Array.from(fieldTop.querySelectorAll(".active"));
-  const blockCoords = activeBlocks.map((e) => e.getBoundingClientRect());
-  const distanceToMove =
-    blockCoords[0].width * multi +
-    +fieldStats.styles.columnGap.slice(0, -2) * multi;
+export const moveToTheRightAnimation = function (indexes) {
+  for (let i = 0; i < indexes.length; i++) {
+    for (let j = 0; j < indexes[i].length; j++) {
+      if (indexes[i][j] !== 0) {
+        const multi = indexes[i][j];
+        const activeBlock = fieldTop.querySelector(
+          `.active[data-coord="${i},${j}"]`
+        );
+        const blockWidth = activeBlock.getBoundingClientRect().width;
+        const distanceToMove =
+          blockWidth * multi +
+          +fieldStats.styles.columnGap.slice(0, -2) * multi;
 
-  activeBlocks.forEach((el) => {
-    el.style.transform = `translate(${distanceToMove}px, 0px)`;
-  });
+        activeBlock.style.transform = `translate(${distanceToMove}px, 0px)`;
+      }
+    }
+  }
+};
+
+export const moveToTheLeftAnimation = function (indexes) {
+  for (let i = 0; i < indexes.length; i++) {
+    for (let j = 0; j < indexes[i].length; j++) {
+      if (indexes[i][j] !== 0) {
+        const multi = indexes[i][j];
+        const activeBlock = fieldTop.querySelector(
+          `.active[data-coord="${i},${j}"]`
+        );
+        const blockWidth = activeBlock.getBoundingClientRect().width;
+        const distanceToMove =
+          blockWidth * multi +
+          +fieldStats.styles.columnGap.slice(0, -2) * multi;
+
+        activeBlock.style.transform = `translate(${
+          distanceToMove * -1
+        }px, 0px)`;
+      }
+    }
+  }
+};
+
+export const moveUpAnimation = function (indexes) {
+  for (let i = 0; i < indexes.length; i++) {
+    for (let j = 0; j < indexes[i].length; j++) {
+      if (indexes[i][j] !== 0) {
+        const multi = indexes[i][j];
+        const activeBlock = fieldTop.querySelector(
+          `.active[data-coord="${i},${j}"]`
+        );
+        const blockWidth = activeBlock.getBoundingClientRect().width;
+        const distanceToMove =
+          blockWidth * multi +
+          +fieldStats.styles.columnGap.slice(0, -2) * multi;
+
+        activeBlock.style.transform = `translate(0px, ${
+          distanceToMove * -1
+        }px)`;
+      }
+    }
+  }
+};
+
+export const moveDownAnimation = function (indexes) {
+  for (let i = 0; i < indexes.length; i++) {
+    for (let j = 0; j < indexes[i].length; j++) {
+      if (indexes[i][j] !== 0) {
+        const multi = indexes[i][j];
+        const activeBlock = fieldTop.querySelector(
+          `.active[data-coord="${i},${j}"]`
+        );
+        const blockWidth = activeBlock.getBoundingClientRect().width;
+        const distanceToMove =
+          blockWidth * multi +
+          +fieldStats.styles.columnGap.slice(0, -2) * multi;
+
+        activeBlock.style.transform = `translate(0px, ${distanceToMove}px)`;
+      }
+    }
+  }
 };

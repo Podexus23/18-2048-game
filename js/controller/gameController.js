@@ -22,7 +22,6 @@ const addGamePlayListeners = function () {
     pressedButton = code;
 
     if (code === "ArrowRight") {
-      fieldView.moveToTheRightAnimation(1);
       makeAMove("right");
     }
     if (code === "ArrowLeft") {
@@ -71,20 +70,28 @@ export const makeAMove = (side) => {
   if (side === "right") {
     //generate new state for matrix
     model.movedToRight();
-    // send indexes to make animation
-    //! remove 2 and add indexes
-    // fieldView.moveToTheRightAnimation(2);
+    fieldView.moveToTheRightAnimation(matrix.indexes);
   }
-  if (side === "left") model.movedToLeft();
-  if (side === "up") model.movedUp();
-  if (side === "down") model.movedDown();
+  if (side === "left") {
+    model.movedToLeft();
+    fieldView.moveToTheLeftAnimation(matrix.indexes);
+  }
+  if (side === "up") {
+    model.movedUp();
+    fieldView.moveUpAnimation(matrix.indexes);
+  }
+  if (side === "down") {
+    model.movedDown();
+    fieldView.moveDownAnimation(matrix.indexes);
+  }
   console.log(matrix);
   //generate new box in matrix
   //! model.addNewBox();
   //render new field with occupied boxes in matrix
+  //! return updater
   setTimeout(() => {
     fieldView.updateTopField(matrix);
-  }, 1500);
+  }, 300);
 };
 
 addGamePlayListeners();
