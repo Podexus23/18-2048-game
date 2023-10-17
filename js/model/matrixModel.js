@@ -6,6 +6,13 @@ const arr4 = [8, 4, 2, 4];
 const arr5 = [8, 8, 8, 4];
 const arr6 = [2, 2, 2, 2];
 
+const fakeMatrix = [
+  [1, 2, 3, 4],
+  [1, 2, 3, 4],
+  [1, 2, 3, 4],
+  [1, 2, 3, 4],
+];
+
 const state = {
   matrix: [],
   height: 0,
@@ -143,4 +150,51 @@ export const movedToRight = () => {
 };
 export const movedToLeft = () => {
   state.matrix = state.matrix.map(moveToTheLeft);
+};
+
+export const movedDown = () => {
+  let arr = [];
+  let newChanged = [];
+
+  state.matrix.forEach((row) => {
+    row.forEach((box, i) => {
+      let newBox = [box];
+      if (!arr[i]) arr.push(newBox);
+      else arr[i].push(box);
+    });
+  });
+
+  arr = arr.map(moveToTheRight);
+  arr.forEach((row) => {
+    row.forEach((box, i) => {
+      let newBox = [box];
+      if (!newChanged[i]) newChanged.push(newBox);
+      else newChanged[i].push(box);
+    });
+  });
+
+  state.matrix = newChanged;
+};
+
+export const movedUp = () => {
+  let arr = [];
+  let newChanged = [];
+
+  state.matrix.forEach((row) => {
+    row.forEach((box, i) => {
+      let newBox = [box];
+      if (!arr[i]) arr.push(newBox);
+      else arr[i].push(box);
+    });
+  });
+
+  arr = arr.map(moveToTheLeft);
+  arr.forEach((row) => {
+    row.forEach((box, i) => {
+      let newBox = [box];
+      if (!newChanged[i]) newChanged.push(newBox);
+      else newChanged[i].push(box);
+    });
+  });
+  state.matrix = newChanged;
 };

@@ -18,19 +18,15 @@ const addGamePlayListeners = function () {
     pressedButton = code;
 
     if (code === "ArrowRight") {
-      console.log("right");
       makeAMove("right");
     }
     if (code === "ArrowLeft") {
-      console.log("left");
       makeAMove("left");
     }
     if (code === "ArrowUp") {
-      console.log("up");
       makeAMove("up");
     }
     if (code === "ArrowDown") {
-      console.log("down");
       makeAMove("down");
     }
     console.log(model.getState().matrix);
@@ -46,6 +42,7 @@ const addGamePlayListeners = function () {
 // INITIALIZATION
 export const init = function () {
   // creating matrix model and render it on screen
+  //!
   model.createMatrix(matrixSize.x, matrixSize.y);
   fieldView.createField(model.getState(), "down");
   fieldView.createField(model.getState());
@@ -67,6 +64,8 @@ export const makeAMove = (side) => {
   const matrix = model.getState();
   if (side === "right") model.movedToRight();
   if (side === "left") model.movedToLeft();
+  if (side === "up") model.movedUp();
+  if (side === "down") model.movedDown();
   //generate new box in matrix
   model.addNewBox();
   //render new field with occupied boxes in matrix
