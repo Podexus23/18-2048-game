@@ -158,3 +158,21 @@ export const moveDownAnimation = function (indexes) {
     }
   }
 };
+
+export const loadGameOverScreen = function () {
+  const fieldModal = `
+  <div class="field__modal">
+          <h3 class="field__modal-title">Game Over</h3>
+  </div>`;
+
+  fieldsWrapper.insertAdjacentHTML("beforeend", fieldModal);
+};
+
+export const loadGameWinScreen = function () {
+  const fieldModal = `
+  <div class="field__modal">
+          <h3 class="field__modal-title">You Won!</h3>
+  </div>`;
+
+  fieldsWrapper.insertAdjacentHTML("beforeend", fieldModal);
+};

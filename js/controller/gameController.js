@@ -89,9 +89,8 @@ export const makeAMove = (side) => {
     fieldView.loadGameOverScreen();
   }
 
+  fieldView.loadGameWinScreen();
   if (model.checkForWinGame()) {
-    //! add win screen
-    console.log("you won");
   }
   //render new field with occupied boxes in matrix
   setTimeout(() => {
