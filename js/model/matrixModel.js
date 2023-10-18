@@ -1,8 +1,9 @@
+import { WIN_NUMBER } from "../config/config.js";
 // const fakeMatrix = [
 //   [2, 0, 0, 0],
 //   [2, 0, 0, 4],
-//   [2, 0, 0, 2],
-//   [2, 0, 0, 0],
+//   [1024, 0, 0, 2],
+//   [1024, 0, 0, 0],
 // ];
 
 // const fakeIndexes = [
@@ -14,9 +15,9 @@
 
 const state = {
   matrix: [],
-  height: 4,
-  width: 4,
-  emptySpots: 8,
+  height: 0,
+  width: 0,
+  emptySpots: 0,
   isPlaying: false,
   indexes: [],
 };
@@ -47,10 +48,6 @@ export const createMatrix = (x, y) => {
 };
 
 export const addNewBox = (start = false) => {
-  if (!state.emptySpots) {
-    console.log("sorry, game over");
-    return;
-  }
   let x = Math.ceil(Math.random() * state.width) - 1;
   let y = Math.ceil(Math.random() * state.height) - 1;
   if (start) state.matrix[y][x] = 2;
@@ -134,18 +131,28 @@ function moveToTheLeft(arr, arrIndex) {
   return res.reverse();
 }
 
-export const movedToRight = () => {
-  state.matrix = state.matrix.map((arr, i) => {
-    return moveToTheRight(arr, i);
-  });
-};
-export const movedToLeft = () => {
-  state.matrix = state.matrix.map((arr, i) => {
-    return moveToTheLeft(arr, i);
-  });
+const isMovable = (arr) => {
+  if (!arr) return !state.indexes.flat().every((e) => e === 0);
+  else return !arr.indexes.flat().every((e) => e === 0);
 };
 
-export const movedDown = () => {
+export const movedToRight = (checking = false) => {
+  let arr = state.matrix.map((arr, i) => {
+    return moveToTheRight(arr, i);
+  });
+  if (checking) return isMovable();
+  else state.matrix = arr;
+};
+
+export const movedToLeft = (checking = false) => {
+  let arr = state.matrix.map((arr, i) => {
+    return moveToTheLeft(arr, i);
+  });
+  if (checking) return isMovable();
+  else state.matrix = arr;
+};
+
+export const movedDown = (checking = false) => {
   let arr = [];
   let newChanged = [];
   let newIndexes = [];
@@ -175,11 +182,15 @@ export const movedDown = () => {
       else newIndexes[i].push(box);
     });
   });
-  state.indexes = newIndexes;
-  state.matrix = newChanged;
+  if (checking) {
+    return isMovable();
+  } else {
+    state.indexes = newIndexes;
+    state.matrix = newChanged;
+  }
 };
 
-export const movedUp = () => {
+export const movedUp = (checking = false) => {
   let arr = [];
   let newChanged = [];
   let newIndexes = [];
@@ -209,7 +220,29 @@ export const movedUp = () => {
       else newIndexes[i].push(box);
     });
   });
-  state.indexes = newIndexes;
 
-  state.matrix = newChanged;
+  if (checking) {
+    return isMovable();
+  } else {
+    state.indexes = newIndexes;
+    state.matrix = newChanged;
+  }
+};
+
+export const checkForGameOver = function () {
+  console.log("checking");
+  //check for all moves, if there all with indexes === 0, so this is the end
+  if (
+    !movedToRight(true) &&
+    !movedToLeft(true) &&
+    !movedDown(true) &&
+    !movedUp(true)
+  ) {
+    console.log("hi loser");
+    return true;
+  }
+};
+
+export const checkForWinGame = function () {
+  return state.matrix.flat().includes(WIN_NUMBER);
 };

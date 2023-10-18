@@ -1,18 +1,10 @@
 import * as model from "../model/matrixModel.js";
 import * as fieldView from "../view/fieldView.js";
-import { matrixSize, ARROWS } from "../config/config.js";
+import { matrixSize, ARROWS, animationTime } from "../config/config.js";
 
 const fieldsWrapper = document.querySelector(".field-wrapper");
 let pressedButton;
 // Listeners
-document.addEventListener("click", (e) => {
-  console.log(e.clientX, e.clientY);
-});
-
-fieldsWrapper.addEventListener("click", (e) => {
-  if (e.target.classList.contains("field-cell"))
-    e.target.classList.add("active");
-});
 
 const addGamePlayListeners = function () {
   document.addEventListener("keydown", (e) => {
@@ -48,15 +40,18 @@ export const init = function () {
   model.createMatrix(matrixSize.x, matrixSize.y);
   fieldView.createField(model.getState(), "down");
   fieldView.createField(model.getState());
-  //! test purpose
-  // const matrix = model.getState();
-  // fieldView.updateTopField(matrix);
+};
+
+const resetGame = function () {
+  fieldsWrapper.innerHTML = ``;
+  init();
 };
 
 //Game Start
 export const startGame = () => {
   const matrix = model.getState();
   //generate new box in matrix
+  if (model.getState) resetGame();
   model.addNewBox(true);
   //say to state that game started
   model.setGameState(true);
@@ -84,13 +79,21 @@ export const makeAMove = (side) => {
     model.movedDown();
     fieldView.moveDownAnimation(matrix.indexes);
   }
-  console.log(matrix);
-  //generate new box in matrix
-  !model.addNewBox();
+  //check if there no empty boxes, don't spawn nwe ones
+  let checkIndexes = matrix.indexes.flat().every((e) => e === 0);
+  if (!checkIndexes) model.addNewBox();
+
+  //check if any box can move, if not, don't generate new one
+  if (!matrix.emptySpots && model.checkForGameOver()) {
+    //! add ending screen
+    fieldView.loadGameOverScreen();
+  }
+
+  fieldView.loadGameWinScreen();
+  if (model.checkForWinGame()) {
+  }
   //render new field with occupied boxes in matrix
   setTimeout(() => {
     fieldView.updateTopField(matrix);
-  }, 200);
+  }, animationTime);
 };
-
-// addGamePlayListeners();
